@@ -1,0 +1,2 @@
+This file is use of Linux IO func test, like open(), read(), write().
+Than it'll be open to read and write on other file.
