@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <string.h>
+#include <wait.h>
 
 int main(){
     int ret;
@@ -26,11 +27,12 @@ int main(){
         //父进程
         close(pipefd[1]);//关闭写端fd
         char buf[1024] = {};
-        while(1){
+        int len = -1;
+        while(len = read(pipefd[0], buf, sizeof(buf)-1)){
             bzero(buf, 1024);
-            int len = read(pipefd[0], buf, sizeof(buf)-1);
             printf("%s", buf);
         }
+        wait(NULL);
 
     }else if(pid == 0){
         //子进程
