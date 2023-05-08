@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <signal.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int main(){
 	
@@ -17,7 +18,10 @@ int main(){
 	//修改内核中的阻塞信号集
 	sigprocmask(SIG_BLOCK, &set, NULL);
 	
+	int num = 0;
+
 	while(1){
+		num++;
 		//获取当前未决信号集的数据
 		sigset_t pending_set;
 		sigemptyset(&pending_set);
@@ -29,6 +33,11 @@ int main(){
 
 		}
 		printf("\n");
+		sleep(1);
+		if(num == 15){
+			//解除阻塞
+			sigprocmask(SIG_UNBLOCK, &set, NULL);
+		}
 	}
 
 	return 0;
