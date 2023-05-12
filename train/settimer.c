@@ -7,7 +7,7 @@
 
 void myalarm(int signum){
     printf("捕捉到 %d 信号\n", signum);
-    // printf("-------------\n");
+    // printf("-------------\n"); 
 }
 
 int main(){
@@ -19,7 +19,17 @@ int main(){
     timer.it_value.tv_usec = 0;
 
     //在定时开始前注册信号捕捉
-    signal(SIGALRM, myalarm);
+
+    //用signal
+    // signal(SIGALRM, myalarm);
+
+    //用sigaction
+    struct sigaction act;
+    act.sa_handler = myalarm;
+    sigemptyset(&act.sa_mask);
+    act.sa_flags = 0;
+
+    sigaction(SIGALRM, &act, NULL);
 
     //启用定时器，以真实时间计时
     int ret = setitimer(ITIMER_REAL, &timer, NULL);
