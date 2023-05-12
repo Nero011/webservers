@@ -37,7 +37,8 @@
   "files.associations": {
     "time.h": "c",
     "dirent.h": "c",
-    "signal.h": "c"
+    "signal.h": "c",
+    "wait.h": "c"
   },
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp.errorSquiggles": "disabled"
