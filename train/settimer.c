@@ -25,9 +25,9 @@ int main(){
 
     //用sigaction
     struct sigaction act;
-    act.sa_handler = myalarm;
-    sigemptyset(&act.sa_mask);
-    act.sa_flags = 0;
+    act.sa_handler = myalarm;//回调函数
+    sigemptyset(&act.sa_mask);//清空临时阻塞信号集
+    act.sa_flags = 0;//调用sa_handler
 
     sigaction(SIGALRM, &act, NULL);
 
