@@ -14,7 +14,8 @@
 
 void timesir(int num){
     printf("timesir\n");
-    int fd = open("time.txt", O_RDWR | O_CREAT | O_APPEND, 0664);
+    int fd = open("time.txt", O_RDWR | O_CREAT | O_APPEND
+    , 0664);
     time_t rtime = time(NULL);
     struct tm *loc = localtime(&rtime);
     // char buf[1024];
