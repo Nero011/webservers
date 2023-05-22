@@ -19,9 +19,10 @@ struct Node{
 struct Node* head = NULL;
 int count_node = 0;//链表中总数
 
-pthread_rwlock_t prod;
+// pthread_rwlock_t prod;//使用读写锁
 pthread_mutex_t mutex;
-pthread_cond_t cond;
+sem_t
+pthread_cond_t cond;//条件变量
 
 void* customer(void* arg){
     while(1){
@@ -29,6 +30,7 @@ void* customer(void* arg){
         // pthread_rwlock_rdlock(&prod);
         pthread_mutex_lock(&mutex);
         printf("%ld cus:\n\n", pthread_self());
+        //使用条件变量实现
         if(head != NULL){
             count_node--;
             struct Node* tmp = head;
@@ -40,18 +42,22 @@ void* customer(void* arg){
             pthread_cond_wait(&cond, &mutex);
 
         }
-        // pthread_rwlock_unlock(&prod);
+
+        //使用信号量
+
+        // pthread_rwlock_unlock(&prod);//使用读写锁
         pthread_mutex_unlock(&mutex);
     }
     pthread_exit(NULL);
 }
-
+pthread_cond_broadcast();
 
 void* product(void* arg){
     while(1){
         usleep(5000);
         // pthread_rwlock_wrlock(&prod);
         pthread_mutex_lock(&mutex);
+        //使用条件变量
         printf("%ld pro:\n\n", pthread_self());
         if(count_node < 1000){
             count_node++;
@@ -61,7 +67,11 @@ void* product(void* arg){
             head = cur;
             printf("product %d, count %d\n", head->num, count_node);
         }
-        // pthread_rwlock_unlock(&prod);
+
+        //使用信号量
+
+
+        // pthread_rwlock_unlock(&prod);//使用读写锁
         pthread_mutex_unlock(&mutex);
         pthread_cond_signal(&cond);
     }
