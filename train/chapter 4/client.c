@@ -25,16 +25,29 @@ int main(){
     if(ret = 0) printf("Connected.\n");
 
     //3.通信
-    char send_buf[1024];
-    printf("Enter text: \n");
-    scanf("%s", send_buf);
-    write(fd, send_buf, strlen(send_buf));
+    char send_buf[1024] = {};
+    char recv_buf[1024] = {};
+
+    while(1){
+        memset(send_buf, 0, sizeof(send_buf));
+        memset(recv_buf, 0, sizeof(recv_buf));
+        printf("Enter text: \n");
+        fgets(send_buf, sizeof(send_buf), stdin);
+        if(!strcmp(send_buf, "quit\n")) break;
+        // printf("%d\n", strcmp(send_buf, "quit\n"));
+        write(fd, send_buf, strlen(send_buf));
 
 
-    char recv_buf[1024];
-    ret = read(fd, recv_buf, sizeof(recv_buf));
-    if(ret > 0){
-        printf("%s\n", recv_buf);
+        ret = read(fd, recv_buf, sizeof(recv_buf));
+        if(ret > 0){
+            printf("%s\n", recv_buf);
+        }else if(ret == -1){
+            perror("read");
+            return -1;
+        }else if(ret == 0){
+            printf("server closed...\n");
+            break;
+        }
     }
 
     //5.关闭文件描述符

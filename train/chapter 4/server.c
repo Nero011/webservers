@@ -40,19 +40,27 @@ int main(){
 
     //5.通信
     //获取数据
-    char buf[1024] = {};
-    int buflen = read(fd_cli, buf, sizeof(buf));
-    if(buflen == -1){
-        perror("read");
-        return -1;
-    }else if(buflen > 0){
-        printf("recv client data: %s\n", buf);
-    }else if(buflen == 0){
-        //客户端断开连接
-        printf("client closed...\n");
+    char recvbuf[1024] = {};
+    char sendbuf[1024] = {};
+    while(1){
+        memset(sendbuf, 0, sizeof(sendbuf));
+        memset(recvbuf, 0, sizeof(recvbuf));
+
+        int buflen = read(fd_cli, recvbuf, sizeof(recvbuf));
+        if(buflen == -1){
+            perror("read");
+            return -1;
+        }else if(buflen > 0){
+            printf("recv client data: %s\n", recvbuf);
+        }else if(buflen == 0){
+            //客户端断开连接
+            printf("client closed...\n");
+            break;
+        }
+        //发送数据
+        strcpy(sendbuf, recvbuf);//环回
+        write(fd_cli, sendbuf, strlen(sendbuf));
     }
-    //发送数据
-    write(fd_cli, buf, strlen(buf));
 
     //6.关闭文件描述符
     close(fd_cli);
