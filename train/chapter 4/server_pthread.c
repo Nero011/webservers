@@ -85,14 +85,13 @@ int main(){
     addr_c.sin_family = AF_INET;
     socklen_t len = 0;
     while(1){
-        printf("主线程, %d\n", fd_s);
+        
         int fd_c = accept(fd_s, (struct sockaddr*)&addr_c, &len);
         if (fd_c == -1){
             perror("accept");
             return -1;
         }
 
-        sleep(1);
 
 
         //连接成功，就创建子线程
@@ -121,12 +120,13 @@ int main(){
         memcpy(&pInfo->addr, &addr_c, sizeof(addr_c));
         pInfo->fd = fd_c;
 
+
         pthread_create(&pInfo->tid, NULL, comm, (void*)pInfo);
 
         //线程分离
         pthread_detach(pInfo->tid);
 
-        close(fd_s);
     }
+    close(fd_s);
 
 }
