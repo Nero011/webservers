@@ -56,30 +56,43 @@ int main(){
 
     //1.创建socket
     int fd_s = socket(AF_INET, SOCK_STREAM, 0);
-
+    if(fd_s == -1){
+        perror("socket");
+        return -1;
+    }
     //2.绑定IP和端口
     struct sockaddr_in addr_s;
     addr_s.sin_family = AF_INET;
     addr_s.sin_port = htons(PROT);
     inet_pton(AF_INET, IP, &addr_s.sin_addr.s_addr);
-    bind(fd_s, (struct sockaddr*)&addr_s, sizeof(addr_s));
-
+    int ret = bind(fd_s, (struct sockaddr*)&addr_s, sizeof(addr_s));
+    if(ret == -1){
+        perror("bind");
+        return -1;
+    }
     //3.监听
-    listen(fd_s, 128);
+    ret = listen(fd_s, 128);
+    if(ret == -1){
+        perror("listen");
+        return -1;
+    }
 
     //4.连接
 
     //主线程负责连接，子线程负责通信
 
+    struct sockaddr_in addr_c;
+    addr_c.sin_family = AF_INET;
+    socklen_t len = 0;
     while(1){
-        printf("主线程\n");
-        struct sockaddr_in addr_c;
-        socklen_t len;
+        printf("主线程, %d\n", fd_s);
         int fd_c = accept(fd_s, (struct sockaddr*)&addr_c, &len);
         if (fd_c == -1){
             perror("accept");
             return -1;
         }
+
+        sleep(1);
 
 
         //连接成功，就创建子线程

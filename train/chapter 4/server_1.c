@@ -74,6 +74,7 @@ int main(){
     while(1){
         int fd_c = accept(fd_s, (struct sockaddr*)&addr_c, &len);
         if(fd_c == -1){
+            perror("accept");
             if(errno == EINTR){
                 // perror("软中断引起的调用错误");
                 continue;
