@@ -65,6 +65,13 @@ int main(){
     addr_s.sin_family = AF_INET;
     addr_s.sin_port = htons(PROT);
     inet_pton(AF_INET, IP, &addr_s.sin_addr.s_addr);
+
+
+    //设置端口复用
+    int optval = 1;
+    setsockopt(fd_s, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval));
+
+
     int ret = bind(fd_s, (struct sockaddr*)&addr_s, sizeof(addr_s));
     if(ret == -1){
         perror("bind");
@@ -85,7 +92,7 @@ int main(){
     addr_c.sin_family = AF_INET;
     socklen_t len = 0;
     while(1){
-        
+
         int fd_c = accept(fd_s, (struct sockaddr*)&addr_c, &len);
         if (fd_c == -1){
             perror("accept");
