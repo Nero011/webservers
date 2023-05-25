@@ -42,16 +42,28 @@ int main(){
 
     //1.建立socket
     int fd_s = socket(AF_INET, SOCK_STREAM, 0);//ipv4，流传输，TCP协议
+    if(fd_s == -1){
+        perror("socket");
+        return -1;
+    }
 
     //2.绑定socket
     struct sockaddr_in addr_s;
     addr_s.sin_family = AF_INET;
     addr_s.sin_port = htons(PROT);
     inet_pton(AF_INET, IP, &addr_s.sin_addr.s_addr);
-    bind(fd_s, (struct sockaddr*)&addr_s, sizeof(addr_s));
+    int ret = bind(fd_s, (struct sockaddr*)&addr_s, sizeof(addr_s));
+    if(ret == -1){
+        perror("bind");
+        return -1;
+    }
 
     //3.监听
-    listen(fd_s, 128);//最大等待队列+已连接队列：128
+    ret = listen(fd_s, 128);//最大等待队列+已连接队列：128
+    if(ret == -1){
+        perror("listen");
+        return -1;
+    }
 
 
     //4.等待连接

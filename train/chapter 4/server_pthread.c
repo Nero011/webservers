@@ -72,9 +72,14 @@ int main(){
     //主线程负责连接，子线程负责通信
 
     while(1){
+        printf("主线程\n");
         struct sockaddr_in addr_c;
         socklen_t len;
         int fd_c = accept(fd_s, (struct sockaddr*)&addr_c, &len);
+        if (fd_c == -1){
+            perror("accept");
+            return -1;
+        }
 
 
         //连接成功，就创建子线程
