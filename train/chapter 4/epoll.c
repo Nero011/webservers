@@ -8,6 +8,9 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/epoll.h>
+#include <fcntl.h>
+#include <errno.h>
+
 
 
 const char *IP = "192.168.88.129";
@@ -52,6 +55,7 @@ int main(){
     //IO多路复用
     //使用epoll
     int epfd = epoll_create(1);//新建epoll实例
+
     struct epoll_event lfd;
     lfd.events = EPOLLIN;
     lfd.data.fd = fd_s;
@@ -86,9 +90,16 @@ int main(){
                 }
                 printf("客户端已连接！\n");
 
+
+                //设置非阻塞
+                int flags = fcntl(fd_c, F_GETFL);
+                flags = flags | O_NONBLOCK;
+                ret = fcntl(fd_c, F_SETFL, flags);
+                if(ret == 0) printf("设置客户端非阻塞成功！\n");
+
                 //添加新连接进epoll
                 struct epoll_event cfd;
-                cfd.events = EPOLLIN;
+                cfd.events = EPOLLIN | EPOLLET;//边缘触发
                 cfd.data.fd = fd_c;
                 ret = epoll_ctl(epfd, EPOLL_CTL_ADD, fd_c, &cfd);
                 // if(ret != -1) printf("已添加至监听\n");
@@ -96,20 +107,32 @@ int main(){
             else{
                 // printf("else?\n");
                 // 已连接的客户端
-                char buf[1024] = {};
-                int num = read(events[i].data.fd, buf, sizeof(buf));
+                int num = 0;
+                char buf[5] = {};   
+                //循环读出所有数据
+                while((num = read(events[i].data.fd, buf, sizeof(buf))) > 0){
+
+                    printf("recvbuf: %s\n", buf);
+                    write(events[i].data.fd, buf, num); 
+                    memset(buf, 0, sizeof(buf));
+                }
+
                 if(num == -1){
-                    perror("read");
-                    return -1;
+                    //非阻塞模式，数据读完后会出现Resource temporarily unavailable错误
+                    if(errno == EAGAIN){
+                        printf("Resource temporarily unavailable, 是这个\n");
+                    }else{
+                        perror("read");
+                        return -1;
+                    }
+
                 }else if(num == 0){
                     printf("client close...\n");
                     //清除epoll监听
                     epoll_ctl(epfd, EPOLL_CTL_DEL, events[i].data.fd, &events[i]);
                     close(events[i].data.fd);
-                }else{
-                    printf("recvbuf: %s\n", buf);
-                    write(events[i].data.fd, buf, strlen(buf));
                 }
+                
             }
         }
            
