@@ -1,5 +1,21 @@
 //epoll实现IO复用
 
+
+
+/*
+    bug:
+        1. 在输入和buf相同大小的的字符串时，服务器会输出一个字符串和一个空行，也就是多进入了一次while
+        2. 在客户端退出后，read出错，服务器退出， Connection reset by peer
+*/
+
+
+
+
+
+
+
+
+
 #include <stdio.h>
 #include <pthread.h>
 #include <string.h>
@@ -76,9 +92,9 @@ int main(){
             perror("epoll");
             return -1;
         }
-        // printf("epoll返回, ret = %d\n", ret);
+        printf("epoll返回, ret = %d\n", ret);
         for(int i = 0; i < ret; i++){
-            printf("文件描述符：%d\n", events[i].data.fd);
+            printf("i = %d 文件描述符：%d\n", i, events[i].data.fd);
             if(events[i].data.fd == fd_s){ // 新连接
                 struct sockaddr_in addr_c;
                 addr_c.sin_family = AF_INET;
@@ -95,7 +111,7 @@ int main(){
                 int flags = fcntl(fd_c, F_GETFL);
                 flags = flags | O_NONBLOCK;
                 ret = fcntl(fd_c, F_SETFL, flags);
-                if(ret == 0) printf("设置客户端非阻塞成功！\n");
+                // if(ret == 0) printf("设置客户端非阻塞成功！\n");
 
                 //添加新连接进epoll
                 struct epoll_event cfd;
@@ -105,23 +121,35 @@ int main(){
                 // if(ret != -1) printf("已添加至监听\n");
             }
             else{
-                // printf("else?\n");
                 // 已连接的客户端
                 int num = 0;
-                char buf[5] = {};   
+                char recvbuf[5] = {};   
+                char sendbuf[5] = {};
                 //循环读出所有数据
-                while((num = read(events[i].data.fd, buf, sizeof(buf))) > 0){
+                while((num = read(events[i].data.fd, recvbuf, sizeof(recvbuf)))  > 0){//
+                    // printf("num = %d\n", num);
+                    if(num == 1 && (strcmp(recvbuf, "\n") == 0)){
+                        break;
+                    }else{
+                        printf("recvbuf: %s\n", recvbuf);
+                        // write(STDOUT_FILENO, buf, num);
 
-                    printf("recvbuf: %s\n", buf);
-                    write(events[i].data.fd, buf, num); 
-                    memset(buf, 0, sizeof(buf));
+                        write(events[i].data.fd, recvbuf, sizeof(recvbuf)); 
+                        // printf("write: %d\n", ret);
+                        memset(recvbuf, 0, sizeof(recvbuf));
+                    }
                 }
 
                 if(num == -1){
                     //非阻塞模式，数据读完后会出现Resource temporarily unavailable错误
                     if(errno == EAGAIN){
-                        printf("Resource temporarily unavailable, 是这个\n");
-                    }else{
+                        printf("data over...\n");
+                    }else if(errno == 104){
+                        //读完客户端数据后，客户端退出，有概率触发epoll，此时read会返回连接断开的错误
+                        printf("client close...\n");
+                    }
+
+                    else{                      
                         perror("read");
                         return -1;
                     }
