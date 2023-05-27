@@ -1,4 +1,4 @@
-//select实现IO复用
+//poll实现IO复用
 
 #include <stdio.h>
 #include <pthread.h>
