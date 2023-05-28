@@ -31,6 +31,8 @@
 
 const char *IP = "192.168.88.129";
 const int PROT = 8888;
+#define EPMAX  1024
+#define BUFSIZE  5
 
 
 
@@ -77,8 +79,8 @@ int main(){
     lfd.data.fd = fd_s;
     epoll_ctl(epfd, EPOLL_CTL_ADD, fd_s, &lfd);
 
-    struct epoll_event events[1024];
-    for(int i = 0; i < 1024; i++){
+    struct epoll_event events[EPMAX];
+    for(int i = 0; i < EPMAX; i++){
         events[i].data.fd = -1;
     }
 
@@ -87,7 +89,7 @@ int main(){
    
     printf("监听已启动\n");
     while(1){
-        ret = epoll_wait(epfd, events, sizeof(events), -1);
+        ret = epoll_wait(epfd, events, EPMAX, -1);
         if(ret == -1){
             perror("epoll");
             return -1;
@@ -123,10 +125,10 @@ int main(){
             else{
                 // 已连接的客户端
                 int num = 0;
-                char recvbuf[5] = {};   
-                char sendbuf[5] = {};
+                char recvbuf[BUFSIZE] = {};   
+
                 //循环读出所有数据
-                while((num = read(events[i].data.fd, recvbuf, sizeof(recvbuf)))  > 0){//
+                while((num = read(events[i].data.fd, recvbuf, BUFSIZE))  > 0){//
                     // printf("num = %d\n", num);
                     if(num == 1 && (strcmp(recvbuf, "\n") == 0)){
                         break;
@@ -134,9 +136,9 @@ int main(){
                         printf("recvbuf: %s\n", recvbuf);
                         // write(STDOUT_FILENO, buf, num);
 
-                        write(events[i].data.fd, recvbuf, sizeof(recvbuf)); 
+                        write(events[i].data.fd, recvbuf, BUFSIZE); 
                         // printf("write: %d\n", ret);
-                        memset(recvbuf, 0, sizeof(recvbuf));
+                        memset(recvbuf, 0, BUFSIZE);
                     }
                 }
 
