@@ -5,6 +5,7 @@
 
 #include <pthread.h>//线程
 #include <exception>//异常
+#include <semaphore.h>//信号量
 
 //线程同步类
 
@@ -42,10 +43,17 @@ public:
 //信号量
 class sem{
 private:
+    sem_t m_sem;
     
 public:
     sem();
+    sem(int num);
     ~sem();
+
+
+    bool wait();//等待信号量
+    bool post();//增加信号量
+
 };
 
 
