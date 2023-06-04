@@ -1,4 +1,4 @@
-#include <locker.h>
+#include "locker.h"
 
 locker::locker(){//初始化互斥锁
     if(pthread_mutex_init(&m_mutex, NULL) != 0) { //初始化，如果初始化失败，抛出异常
