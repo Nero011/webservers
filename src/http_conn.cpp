@@ -1,7 +1,8 @@
-#include <http_conn.h>
+#include "http_conn.h"
 
 
-
+int http_conn::m_epollfd;
+int http_conn::m_user_count;
 
 http_conn::http_conn(){
 

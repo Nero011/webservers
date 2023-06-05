@@ -6,7 +6,7 @@
 #include <string.h>
 
 const int PROT_SER = 8888;
-const char *IP_SER = "192.168.88.129";
+const char *IP_SER = "127.0.0.1";
 
 
 int main(){

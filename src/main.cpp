@@ -109,6 +109,7 @@ int main(int argc, char* argv[]){
                 }
                 //将新的客户数据放到数组中，并初始化
                 users[connfd].init(connfd, client_address);
+                printf("客户端连接\n");
 
             }else if(events[i].events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)){
                 //对方异常断开连接

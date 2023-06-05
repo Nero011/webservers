@@ -18,7 +18,7 @@ threadpool<T>::threadpool(int thread_num, int max_requeues):
     //创建thread_num个线程，并设置线程分离
     for(int i = 0;i < m_thread_num; i++){
         printf("create the %dth thread\n", i);
-        if(pthread_create(m_threads+i, NULL, worker, this) != 0){
+        if(pthread_create(m_threads+i, NULL, work, this) != 0){
             delete[] m_threads;
             throw std::exception();
         }
