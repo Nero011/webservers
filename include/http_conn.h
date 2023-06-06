@@ -1,7 +1,9 @@
 #ifndef HTTPCONNECT
 #define HTTPCONNECT
+
+
 #include <sys/epoll.h>
-#include <stdio.h>
+#include <cstdio>
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
@@ -9,6 +11,10 @@
 #include <arpa/inet.h>
 #include <string.h>
 
+
+// #ifdef __cplusplus
+// extern "C"{
+// #endif
 class http_conn
 {
 private:
@@ -28,12 +34,14 @@ public:
 };
 
 
+// #ifdef __cplusplus
+// }
+// #endif
+
+
+
+void modfd(int epollfd, int fd, int ev);
 void addfd(int epollfd, int fd, bool oneshot);
 
 void rmfd(int epollfd, int fd);
-
-void modfd(int epollfd, int fd, int ev);
-
-
-
 #endif
