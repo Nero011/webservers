@@ -3,10 +3,9 @@
 #ifndef THREADPOOL_H
 #define THREADPOOL_H
 
-
 #include <pthread.h>
-#include <list>
 #include <exception>
+#include <list>
 #include "locker.h"
 #include <stdio.h>
 
@@ -33,7 +32,6 @@ public:
     ~threadpool();
     bool append(T* request);//增加任务
 };
-
 
 
 template<typename T>
@@ -88,10 +86,6 @@ bool threadpool<T>::append(T* request){
     return true;
 
 }
-
-
-
-
 
 template<typename T>
 void* threadpool<T>::work(void* arg){
