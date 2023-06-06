@@ -7,6 +7,7 @@
 #include <signal.h>
 #include <fcntl.h>
 #include <arpa/inet.h>
+#include <string.h>
 
 class http_conn
 {

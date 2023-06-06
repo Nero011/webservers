@@ -84,6 +84,7 @@ bool threadpool<T>::append(T* request){
     m_workqueue.push_back(request);
     m_queuelocker.unlock();
     m_queuestat.post();
+    printf("新增线程任务\n");
     return true;
 
 }
@@ -119,7 +120,7 @@ void threadpool<T>::run(){
         if(!request){//没任务
             continue;
         }
-
+        printf("线程获取任务\n");
         request->process();//处理任务
     }
 

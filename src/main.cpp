@@ -111,10 +111,9 @@ int main(int argc, char* argv[]){
                 }
                 //将新的客户数据放到数组中，并初始化
                 users[connfd].init(connfd, client_address);
-                printf("客户端连接\n");
+                printf("New client.\n");
 
-            }else if(events[i].events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)){
-                //对方异常断开连接
+            }else if(events[i].events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)){//对方异常断开连接
                 users[sockfd].close_conn();//关闭连接
             }else if(events[i].events & EPOLLIN){//读事件
                 if(users[sockfd].read()){//一次性把数据读完

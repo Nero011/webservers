@@ -18,7 +18,7 @@ http_conn::~http_conn(){
 * @retval         : 
 */
 void http_conn::process(){
-
+    printf("处理报文\n");
 }
 
 //设置文件描述符非阻塞
@@ -100,6 +100,7 @@ void http_conn::close_conn(){
         m_sockfd = -1;
         m_user_count--;
     }
+    printf("Client down.\n");
 }
 
 /**
@@ -108,6 +109,11 @@ void http_conn::close_conn(){
 * @retval         : 成功返回true, 失败返回flase
 */
 bool http_conn::read(){
+    char buf[1024];
+    while(recv(m_sockfd, buf, sizeof(buf), MSG_DONTWAIT)){
+        printf("%s", buf);
+        memset(buf, 0, 1024);
+    }
     return true;
 }
 /**
