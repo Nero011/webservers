@@ -17,7 +17,7 @@
 #define MAX_EVENT_NUM 10000//最大监听事件
 
 
-extern void addfd(int epollfd, int fd, bool oneshot);//添加文件描述符到epoll中
+extern void addfd(int epollfd, int fd, bool oneshot, bool et);//添加文件描述符到epoll中
 extern void rmfd(int epollfd, int fd);//从epoll中删除文件描述符
 extern void modfd(int epollfd, int fd, int ev);//修改epoll中的文件描述符
 
@@ -82,7 +82,7 @@ int main(int argc, char* argv[]){
     http_conn::m_epollfd = epollfd;//给静态成员赋值
 
     //添加监听文件描述符到epoll
-    addfd(epollfd, lfd, false);
+    addfd(epollfd, lfd, false, false);
 
 
     while(true){

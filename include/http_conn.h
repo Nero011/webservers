@@ -11,6 +11,11 @@
 #include <arpa/inet.h>
 #include <string.h>
 #include <errno.h>
+#include <sys/stat.h>
+#include <iostream>
+#include <sys/mman.h>
+#include <stdarg.h>
+#include <sys/uio.h>
 
 
 class http_conn
@@ -48,6 +53,7 @@ public:
     static int m_epollfd;//所有socket上的事件都被注册到一个epoll对象内
     static int m_user_count;//用户计数
     
+    static const int FILENAME_LEN = 200;        // 文件名的最大长度
     static const int READ_BUFFER_SIZE = 2048; //读缓冲区大小
     static const int WRITE_BUFFER_SIZE = 2048; //写缓冲区大小
 
@@ -72,20 +78,46 @@ private:
     HTTP_CODE parse_request_content(char* text);//解析请求体
     LINE_STATUS parse_line();//解析单行
     HTTP_CODE do_request();// 执行请求
+    void unmap();// 释放内存映射
+
+
+    bool process_write(HTTP_CODE ret);// 生成响应
+
+
+    //写报文要用到的函数
+    bool add_response(const char* format, ...);
+    bool add_status_line(int status, const char* title);
+    bool add_headers(int content_length);
+    bool add_content(const char* content);
+    bool add_content_length(int content_len);
+    bool add_content_type();
+    bool add_linger();
+    bool add_blank_line();
 
     char* get_line() { return m_read_buf + m_start_line;}
 
 
-    int m_sockfd;//该对象连接的socket
-    sockaddr_in m_address;//该对象的地址
-    char m_read_buf[READ_BUFFER_SIZE]; //读缓冲区
-    int m_read_index; //标识读缓冲区中以及读入客户端数据的最后一个字节的下一内容
-    char m_write_buf[WRITE_BUFFER_SIZE]; //写缓冲区
-    char* m_url; //请求目标文件的文件名
-    char* m_version; //请求协议版本，目前只支持HTTP1.1
-    METHOD m_method; //请求方法
-    char* host; // 请求主机名
-    bool m_linger; //HTTP请求是否保持连接
+    int m_sockfd;                           //该对象连接的socket
+    sockaddr_in m_address;                  //该对象的地址
+
+    char m_read_buf[READ_BUFFER_SIZE];      //读缓冲区
+    int m_read_index;                       //标识读缓冲区中以及读入客户端数据的最后一个字节的下一内容
+    char* m_url;                            //请求目标文件的文件名
+    char* m_version;                        //请求协议版本，目前只支持HTTP1.1
+    METHOD m_method;                        //请求方法
+    char* m_host;                           // 请求主机名
+    bool m_linger;                          //HTTP请求是否保持连接
+    long m_content_length;                  //请求体长度
+    
+    
+    char m_write_buf[WRITE_BUFFER_SIZE];    //写缓冲区
+    int m_write_index;                      //写缓冲区指针
+    char m_real_file[200];                  //客户端请求资源的完整路径，内容等于doc_root + m_url, doc_root是网站根目录
+    struct stat m_file_stat;                //文件状态
+    char* m_file_address;                   // 文件映射地址
+    struct iovec m_iv[2];                   // 我们将采用writev来执行写操作，所以定义下面两个成员，其中m_iv_count表示被写内存块的数量。
+    int m_iv_count;
+
 
     int m_checkde_index; //当前在分析的字符在读缓冲区的位置
     int m_start_line; //当前在解析的行的起始位置
@@ -99,7 +131,7 @@ private:
 
 
 void modfd(int epollfd, int fd, int ev);
-void addfd(int epollfd, int fd, bool oneshot);
+void addfd(int epollfd, int fd, bool oneshot, bool et);
 
 void rmfd(int epollfd, int fd);
 #endif
