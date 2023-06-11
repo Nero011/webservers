@@ -1,38 +1,31 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",   
-    "tasks":[  // 可以有多个任务
-        {
-            "label": "build",       // 编译任务名
-            "type": "shell",        // 编译任务的类型，通常为shell/process类型
-            "command": "g++",       // 编译命令
-            "args":[
-                "-g",               // 该参数使编译器在编译的时候产生调试信息
-                "${workspaceFolder}/${fileBasename}",    // 被编译文件，通常为.cpp/.c/.cc文件等
-                "-I",                                    // include path指令
-                "/usr/include",                          
-                "-L",                                    // lib路径
-                "/usr/lib/x86_64-linux-gnu",             
-                "-l",                                    // 链接库文件1
-                "opencv_core",                           
-                "-l",                                    // 链接库文件2
-                "opencv_highgui",                        
-                "-o",                                    // 生成指定名称的可执行文件
-                "${workspaceFolder}/${fileBasenameNoExtension}.out"  
-/* -g hello.cpp -I/usr/include -L/usr/lib/x86_64-linux-gnu -lopencv_core -o hello.out */
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "cmakebuild",      
-            "type": "shell", 
-            "command": "cd build && cmake ../ && make",    // shell 编译命令，做并运算，即前一命令执行失败，则后一命令也不执行
-            "args": []
-        }
-    ] 
-
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++-11 生成活动文件",
+			"command": "/usr/bin/g++-11",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-I${workspaceFolder}/include",
+				
+				"-g",
+				// "${file}",
+				"${workspaceFolder}/src/*.cpp",
+				"-o",
+				"${fileDirname}/${fileBasenameNoExtension}"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "编译器: /usr/bin/g++-11"
+		}
+	]
 }
