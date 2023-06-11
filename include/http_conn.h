@@ -119,7 +119,7 @@ private:
     int m_iv_count;
 
 
-    int m_checkde_index; //当前在分析的字符在读缓冲区的位置
+    int m_checked_index; //当前在分析的字符在读缓冲区的位置
     int m_start_line; //当前在解析的行的起始位置
 
     CHECK_STATE m_check_state; //主状态机所处的状态

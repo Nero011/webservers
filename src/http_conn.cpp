@@ -110,7 +110,7 @@ void http_conn::init(int sockfd, const sockaddr_in & addr){
 */
 void http_conn::init(){
     m_check_state = CHECK_STATE_REQUESTLITE; //初始化状态为解析请求行
-    m_checkde_index = 0;//初始化当前解析到字符的位置
+    m_checked_index = 0;//初始化当前解析到字符的位置
     m_start_line = 0;
     m_read_index = 0;
 
@@ -283,7 +283,7 @@ bool http_conn::add_blank_line(){
 }
 
 bool http_conn::add_content(const char* content){
-
+    return add_response( "%s", content );
 }
 
 /**
@@ -349,7 +349,7 @@ http_conn::HTTP_CODE http_conn::process_read(){
         text = get_line();
         // std::cout << text;
 
-        m_start_line = m_checkde_index; //更新行开始的位置为当前检查位置
+        m_start_line = m_checked_index; //更新行开始的位置为当前检查位置
         // printf("got 1 http line: %s\n", text);
 
         switch(m_check_state){ //主状态机
@@ -544,8 +544,14 @@ http_conn::HTTP_CODE http_conn::parse_request_header(char* text){
 
 //没有真正解析HTTP请求体
 http_conn::HTTP_CODE http_conn::parse_request_content(char* text){
+    printf("解析请求体\n");
+    if ( m_read_index >= ( m_content_length + m_checked_index ) )
+    {
+        text[ m_content_length ] = '\0';
+        return GET_REQUEST;
+    }
+    return NO_REQUEST;
 
-    return GET_REQUEST;
 }
 
 /**
@@ -557,26 +563,26 @@ http_conn::LINE_STATUS http_conn::parse_line(){
     char temp;
     // std::cout << "处理单行" << std::endl;
 
-    for(; m_checkde_index < m_read_index; m_checkde_index++){
-        temp = m_read_buf[m_checkde_index];
+    for(; m_checked_index < m_read_index; m_checked_index++){
+        temp = m_read_buf[m_checked_index];
         // std::cout << "temp = " << temp << std::endl;
-        // printf("m_check_index = %d, m_read_index = %d\n", m_checkde_index, m_read_index);
+        // printf("m_check_index = %d, m_read_index = %d\n", m_checked_index, m_read_index);
         if(temp == '\r'){
             // std::cout << "\r" << std::endl;
-            if((m_checkde_index+1) == m_read_index){
+            if((m_checked_index+1) == m_read_index){
                 return LINE_OPEN; // 行未完整
-            }else if(m_read_buf[m_checkde_index+1] == '\n'){ //读到/r/n
+            }else if(m_read_buf[m_checked_index+1] == '\n'){ //读到/r/n
                 // 将/r/n替换为/0, 也就是字符串结束符，以方便字符串提取
-                m_read_buf[m_checkde_index++] = '\0';
-                m_read_buf[m_checkde_index++] = '\0';
+                m_read_buf[m_checked_index++] = '\0';
+                m_read_buf[m_checked_index++] = '\0';
                 return LINE_OK;
             }
             return LINE_BAD;
         }else if(temp == '\n'){ //有可能出现一行分开读的情况，恰好/r /n分开，所以检测到/n时也识别上一个内容，看看是否有一行数据
             // std::cout << "\n" << std::endl;
-            if((m_checkde_index > 1) && (m_read_buf[m_checkde_index-1] == '\r')){
-                m_read_buf[m_checkde_index-1] = '\0';
-                m_read_buf[m_checkde_index++] = '\0';
+            if((m_checked_index > 1) && (m_read_buf[m_checked_index-1] == '\r')){
+                m_read_buf[m_checked_index-1] = '\0';
+                m_read_buf[m_checked_index++] = '\0';
                 return LINE_OK;
             }
             return LINE_BAD;
@@ -597,10 +603,11 @@ void http_conn::process(){
 
     // 解析HTTP请求
     HTTP_CODE read_ret = process_read();
-    if(read_ret == NO_RESOURCE){//请求不完整，继续监听
+    if(read_ret == NO_REQUEST){//请求不完整，继续监听
         modfd(m_epollfd, m_sockfd, EPOLLIN);
         return;
     }
+    printf("完成HTTP解析，请求为%s\n", (read_ret == FILE_REQUEST) ? "FILE_REQUEST" : "未知请求");
 
     //生成响应
     bool write_ret = process_write(read_ret);
