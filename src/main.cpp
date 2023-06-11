@@ -8,9 +8,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <signal.h>
-#include "locker.h"
-#include "threadpool.h"
-#include "http_conn.h"
+#include "/home/thatchlobe/cpp/webservers/include/locker.h"
+#include "/home/thatchlobe/cpp/webservers/include/threadpool.h"
+#include "/home/thatchlobe/cpp/webservers/include/http_conn.h"
 
 
 #define MAX_FD 65355//最大文件描述符个数

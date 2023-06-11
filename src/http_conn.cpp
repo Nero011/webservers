@@ -118,8 +118,18 @@ void http_conn::init(){
     m_url = nullptr;
     m_version = nullptr;
     m_linger = false;
+    m_content_length = 0;
+    m_host = 0;
+    m_start_line = 0;
+    m_write_index = 0;
+    
+
 
     memset(m_read_buf, 0, READ_BUFFER_SIZE);
+    memset(m_write_buf, 0, WRITE_BUFFER_SIZE);
+    memset(m_real_file, 0, FILENAME_LEN);
+    
+
 
 }
 
@@ -252,6 +262,7 @@ bool http_conn::add_headers(int content_len){
     add_content_type();
     add_linger();
     add_blank_line();
+    return true;
 }
 
 bool http_conn::add_content_length(int content_len){
@@ -336,17 +347,17 @@ http_conn::HTTP_CODE http_conn::process_read(){
         
         //获取一行数据
         text = get_line();
-        std::cout << text;
+        // std::cout << text;
 
         m_start_line = m_checkde_index; //更新行开始的位置为当前检查位置
-        printf("got 1 http line: %s\n", text);
+        // printf("got 1 http line: %s\n", text);
 
         switch(m_check_state){ //主状态机
             case CHECK_STATE_REQUESTLITE:
             {
                 ret = parse_request_line(text);
-                std::cout << "解析请求首行" << std::endl;
-                std::cout << ret << std::endl;
+                // printf("method = %d, version = %s, url = %s\n", m_method, m_version, m_url);
+                // std::cout << ret << std::endl;
                 if(ret == BAD_REQUEST){
                     return BAD_REQUEST;
                 }
@@ -454,7 +465,10 @@ bool http_conn::process_write(HTTP_CODE ret){
 http_conn::HTTP_CODE http_conn::parse_request_line(char* text){
     printf("checking request line\n");
     m_url = strpbrk(text, " \t");//第一个空格的位置
-    *m_url++ = '/0';// 将空格位置变成字符串结束符，那么text就只包含空格前的内容了
+    if (!m_url) { 
+        return BAD_REQUEST;
+    }
+    *m_url++ = '\0';// 将空格位置变成字符串结束符，那么text就只包含空格前的内容了
 
     char* method = text;
     if(strcasecmp(method, "GET") == 0){ // 请求方法是GET
@@ -463,7 +477,7 @@ http_conn::HTTP_CODE http_conn::parse_request_line(char* text){
         return BAD_REQUEST; //暂时只支持GET
     }
 
-    m_version = strpbrk(m_url, " /t");
+    m_version = strpbrk(m_url, " \t");
     if(!m_version){
         return BAD_REQUEST;
     }
@@ -476,15 +490,15 @@ http_conn::HTTP_CODE http_conn::parse_request_line(char* text){
         m_url += 7;//把http://抛弃
         m_url = strchr(m_url, '/');//找到真正的url位置，忽略中间的服务器地址
         
-        if(!m_url || m_url[0] != '/'){
-            return BAD_REQUEST;
-        }
-
-        m_check_state = CHECK_STATE_HEADER;//主状态机变成检查请求头
+    }
+    if(!m_url || m_url[0] != '/'){
+        return BAD_REQUEST;
     }
 
+    m_check_state = CHECK_STATE_HEADER;//主状态机变成检查请求头
 
-    printf("method = %s, version = %s, url = %s\n", m_method, m_version, m_url);
+
+    
     return NO_REQUEST;
 }
 /**
@@ -541,33 +555,35 @@ http_conn::HTTP_CODE http_conn::parse_request_content(char* text){
 */
 http_conn::LINE_STATUS http_conn::parse_line(){
     char temp;
-    std::cout << "处理单行" << std::endl;
+    // std::cout << "处理单行" << std::endl;
 
     for(; m_checkde_index < m_read_index; m_checkde_index++){
         temp = m_read_buf[m_checkde_index];
-        if(temp == '/r'){
+        // std::cout << "temp = " << temp << std::endl;
+        // printf("m_check_index = %d, m_read_index = %d\n", m_checkde_index, m_read_index);
+        if(temp == '\r'){
+            // std::cout << "\r" << std::endl;
             if((m_checkde_index+1) == m_read_index){
                 return LINE_OPEN; // 行未完整
             }else if(m_read_buf[m_checkde_index+1] == '\n'){ //读到/r/n
                 // 将/r/n替换为/0, 也就是字符串结束符，以方便字符串提取
-                m_read_buf[m_checkde_index++] = '/0';
-                m_read_buf[m_checkde_index++] = '/0';
+                m_read_buf[m_checkde_index++] = '\0';
+                m_read_buf[m_checkde_index++] = '\0';
                 return LINE_OK;
             }
             return LINE_BAD;
-        }else if(temp == '/n'){ //有可能出现一行分开读的情况，恰好/r /n分开，所以检测到/n时也识别上一个内容，看看是否有一行数据
-            if((m_checkde_index > 1) && (m_read_buf[m_checkde_index-1] == '/r')){
-                m_read_buf[m_checkde_index-1] = '/0';
-                m_read_buf[m_checkde_index++] = '/0';
+        }else if(temp == '\n'){ //有可能出现一行分开读的情况，恰好/r /n分开，所以检测到/n时也识别上一个内容，看看是否有一行数据
+            // std::cout << "\n" << std::endl;
+            if((m_checkde_index > 1) && (m_read_buf[m_checkde_index-1] == '\r')){
+                m_read_buf[m_checkde_index-1] = '\0';
+                m_read_buf[m_checkde_index++] = '\0';
                 return LINE_OK;
             }
             return LINE_BAD;
         }
-        return LINE_OPEN;
     }
 
-
-    return LINE_OK;
+    return LINE_OPEN;
 }
 
 /**
