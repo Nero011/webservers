@@ -123,7 +123,8 @@ void http_conn::init(){
     m_start_line = 0;
     m_write_index = 0;
     
-
+    m_bytes_have_send = 0;
+    m_bytes_to_send = 0;
 
     memset(m_read_buf, 0, READ_BUFFER_SIZE);
     memset(m_write_buf, 0, WRITE_BUFFER_SIZE);
@@ -182,11 +183,10 @@ bool http_conn::read(){
 * @retval         : 成功返回true, 失败返回flase
 */
 bool http_conn::write(){
+    printf("写数据\n");
     int bytes_send_ret = 0; // 本轮发送的字节数
-    int bytes_have_send = 0;// 已经发送的字节数
-    int bytes_to_send = m_write_index; //将要发送的字节数 m_write_index: 写缓冲区中将要发送的字节数
 
-    if(bytes_to_send == 0){ // 没有要发送的数据，本次响应结束
+    if(m_bytes_to_send == 0){ // 没有要发送的数据，本次响应结束
         modfd(m_epollfd, m_sockfd, EPOLLIN);
         init();
         return true;
@@ -208,20 +208,32 @@ bool http_conn::write(){
             return false;
         }
 
-        bytes_have_send += bytes_send_ret;
-        bytes_to_send -= bytes_send_ret;
-        if(bytes_to_send <= bytes_have_send){
-            std::cout << "bytes_to_sent <= bytes_have_send, 发送完毕" << std::endl;
-            std::cout << "b2s = " << bytes_to_send << std::endl;
-            std::cout << "bhs = " << bytes_have_send << std::endl;
-            // 发送HTTP响应成功，根据HTTP请求中的Connect字段决定是否断开连接
+        
+
+        m_bytes_have_send += bytes_send_ret;
+        m_bytes_to_send -= bytes_send_ret;
+
+        if(m_bytes_have_send >= m_iv[0].iov_len){ // 报文头发送完了
+            m_iv[0].iov_len = 0;
+            m_iv[1].iov_base = m_file_address + (m_bytes_have_send - m_write_index);
+            m_iv[1].iov_len = m_bytes_to_send;
+        }else{
+            m_iv[0].iov_base = m_write_buf + m_bytes_have_send;
+            m_iv[0].iov_len = m_iv[0].iov_len - bytes_send_ret;
+        }
+
+        if (m_bytes_to_send <= 0){
+            // 没有数据要发送了
             unmap();
-            if(m_linger){
+            modfd(m_epollfd, m_sockfd, EPOLLIN);
+
+            if (m_linger)
+            {
                 init();
-                modfd(m_epollfd, m_sockfd, EPOLLIN);
                 return true;
-            }else{
-                modfd(m_epollfd, m_sockfd, EPOLLIN);
+            }
+            else
+            {
                 return false;
             }
         }
@@ -275,7 +287,7 @@ bool http_conn::add_content_type(){
 }
 
 bool http_conn::add_linger(){
-    return add_response("Connect:%s\r\n", (m_linger == true) ? "keep-alive" : "close");
+    return add_response("Connection:%s\r\n", (m_linger == true) ? "keep-alive" : "close");
 }
 
 bool http_conn::add_blank_line(){
@@ -347,7 +359,7 @@ http_conn::HTTP_CODE http_conn::process_read(){
         
         //获取一行数据
         text = get_line();
-        // std::cout << text;
+        // std::cout << text << std::endl;
 
         m_start_line = m_checked_index; //更新行开始的位置为当前检查位置
         // printf("got 1 http line: %s\n", text);
@@ -361,6 +373,7 @@ http_conn::HTTP_CODE http_conn::process_read(){
                 if(ret == BAD_REQUEST){
                     return BAD_REQUEST;
                 }
+                break;
             }
 
             case CHECK_STATE_HEADER:
@@ -371,6 +384,7 @@ http_conn::HTTP_CODE http_conn::process_read(){
                 } else if(ret == GET_REQUEST){ //获取到完整的请求
                     return do_request();// 执行请求
                 }
+                break;
             }
 
             case CHECK_STATE_CONTENT:
@@ -388,7 +402,6 @@ http_conn::HTTP_CODE http_conn::process_read(){
                 return INTERNAL_ERROR;
             }
         }
-        return NO_REQUEST;
     }
 
 
@@ -445,6 +458,9 @@ bool http_conn::process_write(HTTP_CODE ret){
         m_iv[ 1 ].iov_base = m_file_address;
         m_iv[ 1 ].iov_len = m_file_stat.st_size;
         m_iv_count = 2;
+
+        m_bytes_to_send = m_write_index + m_file_stat.st_size;// 需要发送的总长度
+
         return true;
 
     default:

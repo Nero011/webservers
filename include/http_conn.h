@@ -118,6 +118,9 @@ private:
     struct iovec m_iv[2];                   // 我们将采用writev来执行写操作，所以定义下面两个成员，其中m_iv_count表示被写内存块的数量。
     int m_iv_count;
 
+    int m_bytes_to_send; //需要发送的报文长度
+    int m_bytes_have_send; //已经发送的报文长度
+
 
     int m_checked_index; //当前在分析的字符在读缓冲区的位置
     int m_start_line; //当前在解析的行的起始位置
