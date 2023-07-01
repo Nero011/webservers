@@ -97,7 +97,7 @@ template<typename T>
 void* threadpool<T>::work(void* arg){
 
     threadpool* pool = (threadpool*)arg;//this指针
-    pool->run();//这里需要封装多一层吗？
+    pool->run();//这里需要封装多一层吗？ //需要的，因为线程创建后不能直接调用类成员，需要一个静态函数，调用静态函数也就需要多一层封装
     return pool;
 }
 
