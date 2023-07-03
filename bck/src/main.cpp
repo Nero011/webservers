@@ -11,7 +11,7 @@
 #include "/home/thatchlobe/cpp/webservers/include/locker.h"
 #include "/home/thatchlobe/cpp/webservers/include/threadpool.h"
 #include "/home/thatchlobe/cpp/webservers/include/http_conn.h"
-
+#include <boost/bind/bind.hpp>
 
 #define MAX_FD 65355//最大文件描述符个数
 #define MAX_EVENT_NUM 10000//最大监听事件
