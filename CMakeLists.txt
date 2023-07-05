@@ -1,0 +1,1 @@
+exec_program(test testThread.cpp)
