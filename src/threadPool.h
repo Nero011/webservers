@@ -1,8 +1,10 @@
 #ifndef THREADPOOL
 #define THREADPOOL
-
+#include <iostream>
 #include <thread>
 #include <vector>
+#include <mutex>
+#include <condition_variable>
 #include <boost/function.hpp>
 
 class threadPool
@@ -14,9 +16,10 @@ public:
     void start();
 private:
     std::vector<std::thread*> workThreadList_;
-    // TODO: mutex and conditional
-    // mutex mutex_;
-    // cond cond_;
+    
+    std::mutex mutex_;    
+    std::condition_variable cond_;
+    
     bool start_;
     int threadNums_;
     task func_;

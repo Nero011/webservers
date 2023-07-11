@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/thatchlobe/cpp/webservers/build",
+  "command": "/usr/bin/g++  -I/home/thatchlobe/cpp/webservers/src -g -o CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o -c /home/thatchlobe/cpp/webservers/src/threadPool.cc",
+  "file": "/home/thatchlobe/cpp/webservers/src/threadPool.cc"
+}
+]

@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/thatchlobe/cpp/webservers/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all:
+all: CMakeFiles/threadPoolTest.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,8 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean:
+clean: CMakeFiles/threadPoolTest.dir/clean
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/threadPoolTest.dir
+
+# All Build rule for target.
+CMakeFiles/threadPoolTest.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/thatchlobe/cpp/webservers/build/CMakeFiles --progress-num=1,2 "Built target threadPoolTest"
+.PHONY : CMakeFiles/threadPoolTest.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/threadPoolTest.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/thatchlobe/cpp/webservers/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/threadPoolTest.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/thatchlobe/cpp/webservers/build/CMakeFiles 0
+.PHONY : CMakeFiles/threadPoolTest.dir/rule
+
+# Convenience name for target.
+threadPoolTest: CMakeFiles/threadPoolTest.dir/rule
+.PHONY : threadPoolTest
+
+# clean rule for target.
+CMakeFiles/threadPoolTest.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/clean
+.PHONY : CMakeFiles/threadPoolTest.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
