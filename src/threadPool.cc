@@ -7,7 +7,6 @@ threadPool::threadPool(int threadsNums, task func)
     start_(false),
     threadNums_(threadNums_),
     func_(func)
-    
 {    
     
     

@@ -81,12 +81,12 @@ clean: CMakeFiles/threadPoolTest.dir/clean
 CMakeFiles/threadPoolTest.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/thatchlobe/cpp/webservers/build/CMakeFiles --progress-num=1,2 "Built target threadPoolTest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/thatchlobe/cpp/webservers/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target threadPoolTest"
 .PHONY : CMakeFiles/threadPoolTest.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/threadPoolTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/thatchlobe/cpp/webservers/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/thatchlobe/cpp/webservers/build/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/threadPoolTest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/thatchlobe/cpp/webservers/build/CMakeFiles 0
 .PHONY : CMakeFiles/threadPoolTest.dir/rule

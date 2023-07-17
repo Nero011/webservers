@@ -1,6 +1,21 @@
 [
 {
   "directory": "/home/thatchlobe/cpp/webservers/build",
+  "command": "/usr/bin/g++  -I/home/thatchlobe/cpp/webservers/src -g -o CMakeFiles/threadPoolTest.dir/src/Channel.cc.o -c /home/thatchlobe/cpp/webservers/src/Channel.cc",
+  "file": "/home/thatchlobe/cpp/webservers/src/Channel.cc"
+},
+{
+  "directory": "/home/thatchlobe/cpp/webservers/build",
+  "command": "/usr/bin/g++  -I/home/thatchlobe/cpp/webservers/src -g -o CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o -c /home/thatchlobe/cpp/webservers/src/EventLoop.cc",
+  "file": "/home/thatchlobe/cpp/webservers/src/EventLoop.cc"
+},
+{
+  "directory": "/home/thatchlobe/cpp/webservers/build",
+  "command": "/usr/bin/g++  -I/home/thatchlobe/cpp/webservers/src -g -o CMakeFiles/threadPoolTest.dir/src/Poller.cc.o -c /home/thatchlobe/cpp/webservers/src/Poller.cc",
+  "file": "/home/thatchlobe/cpp/webservers/src/Poller.cc"
+},
+{
+  "directory": "/home/thatchlobe/cpp/webservers/build",
   "command": "/usr/bin/g++  -I/home/thatchlobe/cpp/webservers/src -g -o CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o -c /home/thatchlobe/cpp/webservers/src/threadPool.cc",
   "file": "/home/thatchlobe/cpp/webservers/src/threadPool.cc"
 }

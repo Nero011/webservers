@@ -11,6 +11,7 @@ class threadPool
 {
 public:
     typedef boost::function<void()> task;
+    typedef std::condition_variable cond;
     threadPool(int threadsNums, task func);
     ~threadPool();
     void start();
@@ -18,7 +19,7 @@ private:
     std::vector<std::thread*> workThreadList_;
     
     std::mutex mutex_;    
-    std::condition_variable cond_;
+    cond cond_;
     
     bool start_;
     int threadNums_;

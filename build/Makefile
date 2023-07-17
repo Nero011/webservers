@@ -129,6 +129,78 @@ threadPoolTest/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/build
 .PHONY : threadPoolTest/fast
 
+src/Channel.o: src/Channel.cc.o
+.PHONY : src/Channel.o
+
+# target to build an object file
+src/Channel.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/src/Channel.cc.o
+.PHONY : src/Channel.cc.o
+
+src/Channel.i: src/Channel.cc.i
+.PHONY : src/Channel.i
+
+# target to preprocess a source file
+src/Channel.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/src/Channel.cc.i
+.PHONY : src/Channel.cc.i
+
+src/Channel.s: src/Channel.cc.s
+.PHONY : src/Channel.s
+
+# target to generate assembly for a file
+src/Channel.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/src/Channel.cc.s
+.PHONY : src/Channel.cc.s
+
+src/EventLoop.o: src/EventLoop.cc.o
+.PHONY : src/EventLoop.o
+
+# target to build an object file
+src/EventLoop.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o
+.PHONY : src/EventLoop.cc.o
+
+src/EventLoop.i: src/EventLoop.cc.i
+.PHONY : src/EventLoop.i
+
+# target to preprocess a source file
+src/EventLoop.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.i
+.PHONY : src/EventLoop.cc.i
+
+src/EventLoop.s: src/EventLoop.cc.s
+.PHONY : src/EventLoop.s
+
+# target to generate assembly for a file
+src/EventLoop.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.s
+.PHONY : src/EventLoop.cc.s
+
+src/Poller.o: src/Poller.cc.o
+.PHONY : src/Poller.o
+
+# target to build an object file
+src/Poller.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/src/Poller.cc.o
+.PHONY : src/Poller.cc.o
+
+src/Poller.i: src/Poller.cc.i
+.PHONY : src/Poller.i
+
+# target to preprocess a source file
+src/Poller.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/src/Poller.cc.i
+.PHONY : src/Poller.cc.i
+
+src/Poller.s: src/Poller.cc.s
+.PHONY : src/Poller.s
+
+# target to generate assembly for a file
+src/Poller.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/threadPoolTest.dir/build.make CMakeFiles/threadPoolTest.dir/src/Poller.cc.s
+.PHONY : src/Poller.cc.s
+
 src/threadPool.o: src/threadPool.cc.o
 .PHONY : src/threadPool.o
 
@@ -162,6 +234,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... threadPoolTest"
+	@echo "... src/Channel.o"
+	@echo "... src/Channel.i"
+	@echo "... src/Channel.s"
+	@echo "... src/EventLoop.o"
+	@echo "... src/EventLoop.i"
+	@echo "... src/EventLoop.s"
+	@echo "... src/Poller.o"
+	@echo "... src/Poller.i"
+	@echo "... src/Poller.s"
 	@echo "... src/threadPool.o"
 	@echo "... src/threadPool.i"
 	@echo "... src/threadPool.s"

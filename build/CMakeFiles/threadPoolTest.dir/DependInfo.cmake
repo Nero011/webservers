@@ -8,6 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/thatchlobe/cpp/webservers/src/Channel.cc" "CMakeFiles/threadPoolTest.dir/src/Channel.cc.o" "gcc" "CMakeFiles/threadPoolTest.dir/src/Channel.cc.o.d"
+  "/home/thatchlobe/cpp/webservers/src/EventLoop.cc" "CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o" "gcc" "CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o.d"
+  "/home/thatchlobe/cpp/webservers/src/Poller.cc" "CMakeFiles/threadPoolTest.dir/src/Poller.cc.o" "gcc" "CMakeFiles/threadPoolTest.dir/src/Poller.cc.o.d"
   "/home/thatchlobe/cpp/webservers/src/threadPool.cc" "CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o" "gcc" "CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o.d"
   )
 

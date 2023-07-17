@@ -69,10 +69,52 @@ include CMakeFiles/threadPoolTest.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/threadPoolTest.dir/flags.make
 
+CMakeFiles/threadPoolTest.dir/src/Channel.cc.o: CMakeFiles/threadPoolTest.dir/flags.make
+CMakeFiles/threadPoolTest.dir/src/Channel.cc.o: ../src/Channel.cc
+CMakeFiles/threadPoolTest.dir/src/Channel.cc.o: CMakeFiles/threadPoolTest.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/thatchlobe/cpp/webservers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/threadPoolTest.dir/src/Channel.cc.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/threadPoolTest.dir/src/Channel.cc.o -MF CMakeFiles/threadPoolTest.dir/src/Channel.cc.o.d -o CMakeFiles/threadPoolTest.dir/src/Channel.cc.o -c /home/thatchlobe/cpp/webservers/src/Channel.cc
+
+CMakeFiles/threadPoolTest.dir/src/Channel.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/threadPoolTest.dir/src/Channel.cc.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/thatchlobe/cpp/webservers/src/Channel.cc > CMakeFiles/threadPoolTest.dir/src/Channel.cc.i
+
+CMakeFiles/threadPoolTest.dir/src/Channel.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/threadPoolTest.dir/src/Channel.cc.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/thatchlobe/cpp/webservers/src/Channel.cc -o CMakeFiles/threadPoolTest.dir/src/Channel.cc.s
+
+CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o: CMakeFiles/threadPoolTest.dir/flags.make
+CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o: ../src/EventLoop.cc
+CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o: CMakeFiles/threadPoolTest.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/thatchlobe/cpp/webservers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o -MF CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o.d -o CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o -c /home/thatchlobe/cpp/webservers/src/EventLoop.cc
+
+CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/thatchlobe/cpp/webservers/src/EventLoop.cc > CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.i
+
+CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/thatchlobe/cpp/webservers/src/EventLoop.cc -o CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.s
+
+CMakeFiles/threadPoolTest.dir/src/Poller.cc.o: CMakeFiles/threadPoolTest.dir/flags.make
+CMakeFiles/threadPoolTest.dir/src/Poller.cc.o: ../src/Poller.cc
+CMakeFiles/threadPoolTest.dir/src/Poller.cc.o: CMakeFiles/threadPoolTest.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/thatchlobe/cpp/webservers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/threadPoolTest.dir/src/Poller.cc.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/threadPoolTest.dir/src/Poller.cc.o -MF CMakeFiles/threadPoolTest.dir/src/Poller.cc.o.d -o CMakeFiles/threadPoolTest.dir/src/Poller.cc.o -c /home/thatchlobe/cpp/webservers/src/Poller.cc
+
+CMakeFiles/threadPoolTest.dir/src/Poller.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/threadPoolTest.dir/src/Poller.cc.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/thatchlobe/cpp/webservers/src/Poller.cc > CMakeFiles/threadPoolTest.dir/src/Poller.cc.i
+
+CMakeFiles/threadPoolTest.dir/src/Poller.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/threadPoolTest.dir/src/Poller.cc.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/thatchlobe/cpp/webservers/src/Poller.cc -o CMakeFiles/threadPoolTest.dir/src/Poller.cc.s
+
 CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o: CMakeFiles/threadPoolTest.dir/flags.make
 CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o: ../src/threadPool.cc
 CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o: CMakeFiles/threadPoolTest.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/thatchlobe/cpp/webservers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/thatchlobe/cpp/webservers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o -MF CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o.d -o CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o -c /home/thatchlobe/cpp/webservers/src/threadPool.cc
 
 CMakeFiles/threadPoolTest.dir/src/threadPool.cc.i: cmake_force
@@ -85,15 +127,21 @@ CMakeFiles/threadPoolTest.dir/src/threadPool.cc.s: cmake_force
 
 # Object files for target threadPoolTest
 threadPoolTest_OBJECTS = \
+"CMakeFiles/threadPoolTest.dir/src/Channel.cc.o" \
+"CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o" \
+"CMakeFiles/threadPoolTest.dir/src/Poller.cc.o" \
 "CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o"
 
 # External object files for target threadPoolTest
 threadPoolTest_EXTERNAL_OBJECTS =
 
+threadPoolTest: CMakeFiles/threadPoolTest.dir/src/Channel.cc.o
+threadPoolTest: CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o
+threadPoolTest: CMakeFiles/threadPoolTest.dir/src/Poller.cc.o
 threadPoolTest: CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o
 threadPoolTest: CMakeFiles/threadPoolTest.dir/build.make
 threadPoolTest: CMakeFiles/threadPoolTest.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/thatchlobe/cpp/webservers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable threadPoolTest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/thatchlobe/cpp/webservers/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable threadPoolTest"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/threadPoolTest.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
