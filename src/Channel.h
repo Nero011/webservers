@@ -1,3 +1,5 @@
+#ifndef CHANNELHEAD
+#define CHANNELHEAD
 #include <unistd.h>
 #include <thread>
 #include <sys/epoll.h>
@@ -19,6 +21,7 @@ public:
     void rmWriteEvent() { event_ &= EPOLLOUT; update(); }
     int getFd() { return fd_; }
     int getEvent() { return event_; }
+    int getStatus() { return status_; }
     void setReadEventCallback(EventCallback cb){
         readEventCallback = std::move(cb);
     }
@@ -28,13 +31,19 @@ public:
     void setErrEventCallback(EventCallback cb){
         errEventCallback = std::move(cb);
     }
+    void readCallBack() { readEventCallback; }
+    void writeCallBack() { writeEventCallback; }
+    void errCallBack() { errEventCallback; }
 
 private:
     int fd_;            // 封装的文件句柄
     int event_;         // 需要注册到epoll的事件
     EventLoop *loop_;    // 当前Channel所属的Eventloop
+    int status_;        //  当前channel所处状态，供poller使用
     // handle function
     EventCallback readEventCallback;
     EventCallback writeEventCallback;
     EventCallback errEventCallback;
 };
+
+#endif
