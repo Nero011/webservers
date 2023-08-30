@@ -1,8 +1,11 @@
 #include "Channel.h"
 
-Channel::Channel(int fd, int event){
-    _fd = fd;
-    _event = event;
+//event: EPOLLIN/EPOLLOUT
+Channel::Channel(int fd, int event):
+_fd(fd),
+_event(event)
+{
+
 }
 
 void Channel::SetCallBack(int event, void(*func)){

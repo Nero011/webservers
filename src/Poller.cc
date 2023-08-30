@@ -18,23 +18,24 @@ Poller::~Poller(){
 }
 
 
-void Poller::updateChannel(Channel& ch){
-    if(ch.getStatus() == NEW){
-        eventListSize_++;
-        update(ch.getEvent(), ch);
-    }else if(ch.getEvent() == MOD){
-        update(ch.getEvent(), ch);
-    }else{  // delete
-        update(ch.getEvent(), ch);
-        eventListSize_--;
-    }
-}
+// void Poller::updateChannel(Channel& ch){
+//     if(ch.getStatus() == NEW){
+//         eventListSize_++;
+//         update(ch.GetEvent(), ch);
+//     }else if(ch.GetEvent() == MOD){
+//         update(ch.GetEvent(), ch);
+//     }else{  // delete
+//         update(ch.GetEvent(), ch);
+//         eventListSize_--;
+//     }
+// }
 
 void Poller::update(int opertion, Channel& ch){
     struct epoll_event event;
-    event.events = ch.getEvent();
+    if(ch.GetEvent() == READ) event.events = EPOLLIN;
+    else if(ch.GetEvent() == WRITE) event.events = EPOLLOUT;
     event.data.ptr = &ch;    
-    epoll_ctl(epollfd_, opertion, ch.getFd(), &event);
+    epoll_ctl(epollfd_, opertion, ch.GetFd(), &event);
 }
 
 
@@ -46,10 +47,10 @@ void Poller::loop(){
             Channel* ch = (Channel*)eventList_[i].data.ptr;
             int event = eventList_[i].events;
             if(event == EPOLLIN){
-                ch->readCallBack();
+                ch->ReadCallBack();
             }
             if(event == EPOLLOUT){
-                ch->writeCallBack();
+                ch->WriteCallBack();
             }
             // TODO: 错误处理
         }

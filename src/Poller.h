@@ -25,7 +25,9 @@ public:
     void loop();
 
     // update要用两层状态机，通过传入channel所需要的更新操作，决定下一个状态
-    void updateChannel(Channel& ch);
+    // 由于channel重写，先用单层
+    // void updateChannel(Channel& ch);
+    // opertion = EPOLL_CTL_ADD / EPOLL_CTL_MOD / EPOLL_CTL_DEL
     void update(int opertion, Channel& ch);
 
 };
