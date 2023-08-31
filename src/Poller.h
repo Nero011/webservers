@@ -3,6 +3,7 @@
 
 
 #include <sys/epoll.h>
+// #include "EventLoop.h"
 #include "Channel.h"
 #include <vector>
 
@@ -12,12 +13,6 @@ class EventLoop{};
 
 class Poller
 {
-private:
-    int epollfd_;
-    EventLoop* loop_;
-    std::vector<struct epoll_event> eventList_;
-    int eventListSize_;
-
 public:
     Poller(EventLoop* loop);
     ~Poller();
@@ -29,6 +24,12 @@ public:
     // void updateChannel(Channel& ch);
     // opertion = EPOLL_CTL_ADD / EPOLL_CTL_MOD / EPOLL_CTL_DEL
     void update(int opertion, Channel& ch);
+private:
+    int epollfd_;
+    EventLoop* loop_;
+    std::vector<struct epoll_event> eventList_;
+    int eventListSize_;
+
 
 };
 

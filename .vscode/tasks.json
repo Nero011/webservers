@@ -11,7 +11,7 @@
 				
 				"-g",
 				// "${file}",
-				"${workspaceFolder}/src/*.cpp",
+				"${workspaceFolder}/src/*.cc",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}"
 			],
