@@ -6,7 +6,7 @@
 using namespace std;
 
 int main(){
-    int lfd = openServer("127.0.0.1", 10080);
+    int lfd = InetAddress("127.0.0.1", 10080);
 
     EventLoop ev(lfd);
     ev.start();
