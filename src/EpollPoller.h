@@ -13,7 +13,7 @@
 
 #include "Poller.h"
 #include "Timestamp.h"
-class EpollPoller : Poller {
+class EpollPoller : public Poller {
 public:
     EpollPoller(EventLoop* loop);
     ~EpollPoller() override;
