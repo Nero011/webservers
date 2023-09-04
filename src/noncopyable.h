@@ -14,7 +14,3 @@ public:
     noncopyable(const noncopyable&) = delete;
     noncopyable& operator=(const noncopyable&) = delete;
 };
-
-noncopyable::noncopyable(/* args */) {}
-
-noncopyable::~noncopyable() {}
