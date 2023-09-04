@@ -1,5 +1,6 @@
 #include <stdlib.h>
 
+#include "EpollPoller.h"
 #include "Poller.h"
 
 // TODO:实现完具体的IO复用类后，再实现返回值
@@ -8,6 +9,6 @@ Poller* Poller::newDefaultPoller(EventLoop* loop) {
     if (::getenv("USE_POLL")) {
         return nullptr;
     } else {
-        return nullptr;
+        return new EpollPoller(loop);
     }
 }
