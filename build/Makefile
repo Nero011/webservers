@@ -153,6 +153,54 @@ src/Channel.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Channel.cc.s
 .PHONY : src/Channel.cc.s
 
+src/DefaultPoller.o: src/DefaultPoller.cc.o
+.PHONY : src/DefaultPoller.o
+
+# target to build an object file
+src/DefaultPoller.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/DefaultPoller.cc.o
+.PHONY : src/DefaultPoller.cc.o
+
+src/DefaultPoller.i: src/DefaultPoller.cc.i
+.PHONY : src/DefaultPoller.i
+
+# target to preprocess a source file
+src/DefaultPoller.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/DefaultPoller.cc.i
+.PHONY : src/DefaultPoller.cc.i
+
+src/DefaultPoller.s: src/DefaultPoller.cc.s
+.PHONY : src/DefaultPoller.s
+
+# target to generate assembly for a file
+src/DefaultPoller.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/DefaultPoller.cc.s
+.PHONY : src/DefaultPoller.cc.s
+
+src/EpollPoller.o: src/EpollPoller.cc.o
+.PHONY : src/EpollPoller.o
+
+# target to build an object file
+src/EpollPoller.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/EpollPoller.cc.o
+.PHONY : src/EpollPoller.cc.o
+
+src/EpollPoller.i: src/EpollPoller.cc.i
+.PHONY : src/EpollPoller.i
+
+# target to preprocess a source file
+src/EpollPoller.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/EpollPoller.cc.i
+.PHONY : src/EpollPoller.cc.i
+
+src/EpollPoller.s: src/EpollPoller.cc.s
+.PHONY : src/EpollPoller.s
+
+# target to generate assembly for a file
+src/EpollPoller.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/EpollPoller.cc.s
+.PHONY : src/EpollPoller.cc.s
+
 src/EventLoop.o: src/EventLoop.cc.o
 .PHONY : src/EventLoop.o
 
@@ -285,6 +333,12 @@ help:
 	@echo "... src/Channel.o"
 	@echo "... src/Channel.i"
 	@echo "... src/Channel.s"
+	@echo "... src/DefaultPoller.o"
+	@echo "... src/DefaultPoller.i"
+	@echo "... src/DefaultPoller.s"
+	@echo "... src/EpollPoller.o"
+	@echo "... src/EpollPoller.i"
+	@echo "... src/EpollPoller.s"
 	@echo "... src/EventLoop.o"
 	@echo "... src/EventLoop.i"
 	@echo "... src/EventLoop.s"

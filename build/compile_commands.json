@@ -6,6 +6,16 @@
 },
 {
   "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/DefaultPoller.cc.o -c /home/code/webservers/src/DefaultPoller.cc",
+  "file": "/home/code/webservers/src/DefaultPoller.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/EpollPoller.cc.o -c /home/code/webservers/src/EpollPoller.cc",
+  "file": "/home/code/webservers/src/EpollPoller.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
   "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/EventLoop.cc.o -c /home/code/webservers/src/EventLoop.cc",
   "file": "/home/code/webservers/src/EventLoop.cc"
 },
