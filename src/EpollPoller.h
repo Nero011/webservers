@@ -26,7 +26,7 @@ private:
     static const int kInitEventListSize = 16;  // 用于给EventList初始化
 
     // 填写活跃的通道
-    void fillActiveChannle(int numEvents, ChannelList* activeChannels) const;
+    void fillActiveChannel(int numEvents, ChannelList* activeChannels) const;
     // 更新channel
     void update(int operation, Channel* channel);
 

@@ -34,23 +34,23 @@ Timestamp EpollPoller::poll(int timeoutMs, ChannelList* activeChannels) {
 
     if (numEvents > 0) {
         // log debug << " "
-        fillActiveChannle(numEvents, activeChannels);
+        fillActiveChannel(numEvents, activeChannels);
         if (numEvents == events_.size()) {  // 返回的事件数量和vector的长度一样，要扩容
             events_.resize(events_.size() * 2);
-        } else if (numEvents == 0) {
-            // 超时
-            // log <<
-        } else {
-            if (saveErrno != EINTR) {  // 不是由外部中断引起的错误，证明出错
-                errno = saveErrno;
-                // log error << ;
-            }
+        }
+    } else if (numEvents == 0) {
+        // 超时
+        // log <<
+    } else {
+        if (saveErrno != EINTR) {  // 不是由外部中断引起的错误，证明出错
+            errno = saveErrno;
+            // log error << ;
         }
     }
 }
 
 // 把具体发生的事件，填写回绑定的channel中
-void EpollPoller::fillActiveChannle(int numEvents, ChannelList* activeChannels) const {
+void EpollPoller::fillActiveChannel(int numEvents, ChannelList* activeChannels) const {
     Channel* channel;
     for (int i = 0; i < numEvents; ++i) {
         channel = static_cast<Channel*>(events_[i].data.ptr);
