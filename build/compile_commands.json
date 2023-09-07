@@ -6,6 +6,11 @@
 },
 {
   "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/CurrentThread.cc.o -c /home/code/webservers/src/CurrentThread.cc",
+  "file": "/home/code/webservers/src/CurrentThread.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
   "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/DefaultPoller.cc.o -c /home/code/webservers/src/DefaultPoller.cc",
   "file": "/home/code/webservers/src/DefaultPoller.cc"
 },
