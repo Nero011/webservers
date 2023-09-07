@@ -9,8 +9,7 @@ const int Channel::kNoneEvent = 0;
 const int Channel::kReadEvent = EPOLLIN | EPOLLPRI;
 const int Channel::kWriteEvent = EPOLLOUT;
 
-Channel::Channel(EventLoop *loop, int fd)
-    : loop_(loop), fd_(fd), events_(0), revents_(0), index_(-1), tied_(false) {}
+Channel::Channel(EventLoop *loop, int fd) : loop_(loop), fd_(fd), events_(0), revents_(0), index_(-1), tied_(false) {}
 
 Channel::~Channel() {}
 
@@ -23,18 +22,13 @@ void Channel::tie(const std::shared_ptr<void> &obj) {
 // 改变channel fd表示的events事件后,
 // 需要update()在poller内更改相应事件的epoll_ctl
 // 通过EventLoop调用poller的相应方法，注册事件
-void Channel::update() {
-    // TODO:EventLoop类内的updateChannel方法
-    // loop_->updateChannel(this);
-}
+void Channel::update() { loop_->updateChannel(this); }
 
 // 在channel所属的event loop中，删除当前的channel
-void Channel::remove() {
-    // loop_->removeChannel(this);
-}
+void Channel::remove() { loop_->removeChannel(this); }
 
 void Channel::handlelEvent(Timestamp receiveTime) {
-    if (tied_) {  // 如果执行过绑定，需要判断
+    if (tied_) {                                    // 如果执行过绑定，需要判断
         std::shared_ptr<void> guard = tie_.lock();  // 提升弱指针
         if (guard) {
             handleEventWithGuand(receiveTime);
@@ -46,9 +40,8 @@ void Channel::handlelEvent(Timestamp receiveTime) {
 
 // 根据poller通知的具体事件，调用相应的回调函数
 void Channel::handleEventWithGuand(Timestamp receiveTime) {
-    if ((revents_ & EPOLLHUP) &&
-        !(revents_ & EPOLLIN)) {  // 对端发出RST，并且没有触发EPOLLIN，有异常
-        if (closeCallback_) {  // 如果关闭回调函数存在
+    if ((revents_ & EPOLLHUP) && !(revents_ & EPOLLIN)) {  // 对端发出RST，并且没有触发EPOLLIN，有异常
+        if (closeCallback_) {                              // 如果关闭回调函数存在
             closeCallback_();
         }
     }
