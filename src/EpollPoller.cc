@@ -47,6 +47,7 @@ Timestamp EpollPoller::poll(int timeoutMs, ChannelList* activeChannels) {
             // log error << ;
         }
     }
+    return now;
 }
 
 // 把具体发生的事件，填写回绑定的channel中
