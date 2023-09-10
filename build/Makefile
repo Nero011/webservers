@@ -249,6 +249,54 @@ src/EventLoop.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/EventLoop.cc.s
 .PHONY : src/EventLoop.cc.s
 
+src/EventLoopThread.o: src/EventLoopThread.cc.o
+.PHONY : src/EventLoopThread.o
+
+# target to build an object file
+src/EventLoopThread.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/EventLoopThread.cc.o
+.PHONY : src/EventLoopThread.cc.o
+
+src/EventLoopThread.i: src/EventLoopThread.cc.i
+.PHONY : src/EventLoopThread.i
+
+# target to preprocess a source file
+src/EventLoopThread.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/EventLoopThread.cc.i
+.PHONY : src/EventLoopThread.cc.i
+
+src/EventLoopThread.s: src/EventLoopThread.cc.s
+.PHONY : src/EventLoopThread.s
+
+# target to generate assembly for a file
+src/EventLoopThread.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/EventLoopThread.cc.s
+.PHONY : src/EventLoopThread.cc.s
+
+src/EventLoopThreadPool.o: src/EventLoopThreadPool.cc.o
+.PHONY : src/EventLoopThreadPool.o
+
+# target to build an object file
+src/EventLoopThreadPool.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/EventLoopThreadPool.cc.o
+.PHONY : src/EventLoopThreadPool.cc.o
+
+src/EventLoopThreadPool.i: src/EventLoopThreadPool.cc.i
+.PHONY : src/EventLoopThreadPool.i
+
+# target to preprocess a source file
+src/EventLoopThreadPool.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/EventLoopThreadPool.cc.i
+.PHONY : src/EventLoopThreadPool.cc.i
+
+src/EventLoopThreadPool.s: src/EventLoopThreadPool.cc.s
+.PHONY : src/EventLoopThreadPool.s
+
+# target to generate assembly for a file
+src/EventLoopThreadPool.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/EventLoopThreadPool.cc.s
+.PHONY : src/EventLoopThreadPool.cc.s
+
 src/InetAddress.o: src/InetAddress.cc.o
 .PHONY : src/InetAddress.o
 
@@ -321,6 +369,30 @@ src/Poller.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Poller.cc.s
 .PHONY : src/Poller.cc.s
 
+src/Thread.o: src/Thread.cc.o
+.PHONY : src/Thread.o
+
+# target to build an object file
+src/Thread.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Thread.cc.o
+.PHONY : src/Thread.cc.o
+
+src/Thread.i: src/Thread.cc.i
+.PHONY : src/Thread.i
+
+# target to preprocess a source file
+src/Thread.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Thread.cc.i
+.PHONY : src/Thread.cc.i
+
+src/Thread.s: src/Thread.cc.s
+.PHONY : src/Thread.s
+
+# target to generate assembly for a file
+src/Thread.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Thread.cc.s
+.PHONY : src/Thread.cc.s
+
 src/Timestamp.o: src/Timestamp.cc.o
 .PHONY : src/Timestamp.o
 
@@ -369,6 +441,12 @@ help:
 	@echo "... src/EventLoop.o"
 	@echo "... src/EventLoop.i"
 	@echo "... src/EventLoop.s"
+	@echo "... src/EventLoopThread.o"
+	@echo "... src/EventLoopThread.i"
+	@echo "... src/EventLoopThread.s"
+	@echo "... src/EventLoopThreadPool.o"
+	@echo "... src/EventLoopThreadPool.i"
+	@echo "... src/EventLoopThreadPool.s"
 	@echo "... src/InetAddress.o"
 	@echo "... src/InetAddress.i"
 	@echo "... src/InetAddress.s"
@@ -378,6 +456,9 @@ help:
 	@echo "... src/Poller.o"
 	@echo "... src/Poller.i"
 	@echo "... src/Poller.s"
+	@echo "... src/Thread.o"
+	@echo "... src/Thread.i"
+	@echo "... src/Thread.s"
 	@echo "... src/Timestamp.o"
 	@echo "... src/Timestamp.i"
 	@echo "... src/Timestamp.s"
