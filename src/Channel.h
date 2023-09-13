@@ -7,8 +7,7 @@
 #include "noncopyable.h"
 // 用于封装文件句柄和事件
 
-class
-    EventLoop;  // 前置声明，头文件中只需要指针，需要用到方法可以在源文件中包含
+class EventLoop;  // 前置声明，头文件中只需要指针，需要用到方法可以在源文件中包含
 
 class Channel : noncopyable {
 public:
@@ -21,9 +20,7 @@ public:
     /// @brief  得到poller通知后，调用回调，处理事件
     /// @param receiveTime: 接受到任务的时间
     void handlelEvent(Timestamp receiveTime);
-    void setReadCallback(ReadEventCallback cb) {
-        readCallback_ = std::move(cb);
-    }
+    void setReadCallback(ReadEventCallback cb) { readCallback_ = std::move(cb); }
     void setWirteCallback(EventCallback cb) { writeCallback_ = std::move(cb); }
     void setCloseCallback(EventCallback cb) { closeCallback_ = std::move(cb); }
     void setErrorCallback(EventCallback cb) { errorCallback_ = std::move(cb); }
@@ -42,6 +39,10 @@ public:
     }
     void disableReading() {
         events_ &= ~kReadEvent;
+        update();
+    }
+    void enableWriting() {
+        events_ |= kWriteEvent;
         update();
     }
     void disableWriting() {

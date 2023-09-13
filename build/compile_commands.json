@@ -1,6 +1,16 @@
 [
 {
   "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Acceptor.cc.o -c /home/code/webservers/src/Acceptor.cc",
+  "file": "/home/code/webservers/src/Acceptor.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Buffer.cc.o -c /home/code/webservers/src/Buffer.cc",
+  "file": "/home/code/webservers/src/Buffer.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
   "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Channel.cc.o -c /home/code/webservers/src/Channel.cc",
   "file": "/home/code/webservers/src/Channel.cc"
 },
@@ -48,6 +58,21 @@
   "directory": "/home/code/webservers/build",
   "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Poller.cc.o -c /home/code/webservers/src/Poller.cc",
   "file": "/home/code/webservers/src/Poller.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Socket.cc.o -c /home/code/webservers/src/Socket.cc",
+  "file": "/home/code/webservers/src/Socket.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/TcpConnection.cc.o -c /home/code/webservers/src/TcpConnection.cc",
+  "file": "/home/code/webservers/src/TcpConnection.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/TcpServer.cc.o -c /home/code/webservers/src/TcpServer.cc",
+  "file": "/home/code/webservers/src/TcpServer.cc"
 },
 {
   "directory": "/home/code/webservers/build",

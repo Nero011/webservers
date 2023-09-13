@@ -6,8 +6,7 @@
 /// @brief
 /// @param cb 传入的线程回调函数
 /// @param name 线程名称，用lambda捕获
-EventLoopThread::EventLoopThread(const ThreadInitCallback &cb = ThreadInitCallback(),
-                                 const std::string &name = std::string())
+EventLoopThread::EventLoopThread(const ThreadInitCallback &cb, const std::string &name)
     : loop_(nullptr),
       exiting_(false),
       thread_(std::bind(&EventLoopThread::threadFunc_, this), name),

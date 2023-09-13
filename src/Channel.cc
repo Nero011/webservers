@@ -13,7 +13,8 @@ Channel::Channel(EventLoop *loop, int fd) : loop_(loop), fd_(fd), events_(0), re
 
 Channel::~Channel() {}
 
-// 绑定弱指针
+// 绑定弱指针, 用于绑定TcpConnection，在channel执行回调时，通过检测tie_的状态，判断TcpConnnection的状态、
+// 如果tie_状态检查失败，意味着绑定的TcpConnection已经失效，就不执行回调
 void Channel::tie(const std::shared_ptr<void> &obj) {
     tie_ = obj;
     tied_ = true;

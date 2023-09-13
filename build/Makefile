@@ -129,6 +129,54 @@ mymuduo/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/build
 .PHONY : mymuduo/fast
 
+src/Acceptor.o: src/Acceptor.cc.o
+.PHONY : src/Acceptor.o
+
+# target to build an object file
+src/Acceptor.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Acceptor.cc.o
+.PHONY : src/Acceptor.cc.o
+
+src/Acceptor.i: src/Acceptor.cc.i
+.PHONY : src/Acceptor.i
+
+# target to preprocess a source file
+src/Acceptor.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Acceptor.cc.i
+.PHONY : src/Acceptor.cc.i
+
+src/Acceptor.s: src/Acceptor.cc.s
+.PHONY : src/Acceptor.s
+
+# target to generate assembly for a file
+src/Acceptor.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Acceptor.cc.s
+.PHONY : src/Acceptor.cc.s
+
+src/Buffer.o: src/Buffer.cc.o
+.PHONY : src/Buffer.o
+
+# target to build an object file
+src/Buffer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Buffer.cc.o
+.PHONY : src/Buffer.cc.o
+
+src/Buffer.i: src/Buffer.cc.i
+.PHONY : src/Buffer.i
+
+# target to preprocess a source file
+src/Buffer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Buffer.cc.i
+.PHONY : src/Buffer.cc.i
+
+src/Buffer.s: src/Buffer.cc.s
+.PHONY : src/Buffer.s
+
+# target to generate assembly for a file
+src/Buffer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Buffer.cc.s
+.PHONY : src/Buffer.cc.s
+
 src/Channel.o: src/Channel.cc.o
 .PHONY : src/Channel.o
 
@@ -369,6 +417,78 @@ src/Poller.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Poller.cc.s
 .PHONY : src/Poller.cc.s
 
+src/Socket.o: src/Socket.cc.o
+.PHONY : src/Socket.o
+
+# target to build an object file
+src/Socket.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Socket.cc.o
+.PHONY : src/Socket.cc.o
+
+src/Socket.i: src/Socket.cc.i
+.PHONY : src/Socket.i
+
+# target to preprocess a source file
+src/Socket.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Socket.cc.i
+.PHONY : src/Socket.cc.i
+
+src/Socket.s: src/Socket.cc.s
+.PHONY : src/Socket.s
+
+# target to generate assembly for a file
+src/Socket.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/Socket.cc.s
+.PHONY : src/Socket.cc.s
+
+src/TcpConnection.o: src/TcpConnection.cc.o
+.PHONY : src/TcpConnection.o
+
+# target to build an object file
+src/TcpConnection.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/TcpConnection.cc.o
+.PHONY : src/TcpConnection.cc.o
+
+src/TcpConnection.i: src/TcpConnection.cc.i
+.PHONY : src/TcpConnection.i
+
+# target to preprocess a source file
+src/TcpConnection.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/TcpConnection.cc.i
+.PHONY : src/TcpConnection.cc.i
+
+src/TcpConnection.s: src/TcpConnection.cc.s
+.PHONY : src/TcpConnection.s
+
+# target to generate assembly for a file
+src/TcpConnection.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/TcpConnection.cc.s
+.PHONY : src/TcpConnection.cc.s
+
+src/TcpServer.o: src/TcpServer.cc.o
+.PHONY : src/TcpServer.o
+
+# target to build an object file
+src/TcpServer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/TcpServer.cc.o
+.PHONY : src/TcpServer.cc.o
+
+src/TcpServer.i: src/TcpServer.cc.i
+.PHONY : src/TcpServer.i
+
+# target to preprocess a source file
+src/TcpServer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/TcpServer.cc.i
+.PHONY : src/TcpServer.cc.i
+
+src/TcpServer.s: src/TcpServer.cc.s
+.PHONY : src/TcpServer.s
+
+# target to generate assembly for a file
+src/TcpServer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/src/TcpServer.cc.s
+.PHONY : src/TcpServer.cc.s
+
 src/Thread.o: src/Thread.cc.o
 .PHONY : src/Thread.o
 
@@ -426,6 +546,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... mymuduo"
+	@echo "... src/Acceptor.o"
+	@echo "... src/Acceptor.i"
+	@echo "... src/Acceptor.s"
+	@echo "... src/Buffer.o"
+	@echo "... src/Buffer.i"
+	@echo "... src/Buffer.s"
 	@echo "... src/Channel.o"
 	@echo "... src/Channel.i"
 	@echo "... src/Channel.s"
@@ -456,6 +582,15 @@ help:
 	@echo "... src/Poller.o"
 	@echo "... src/Poller.i"
 	@echo "... src/Poller.s"
+	@echo "... src/Socket.o"
+	@echo "... src/Socket.i"
+	@echo "... src/Socket.s"
+	@echo "... src/TcpConnection.o"
+	@echo "... src/TcpConnection.i"
+	@echo "... src/TcpConnection.s"
+	@echo "... src/TcpServer.o"
+	@echo "... src/TcpServer.i"
+	@echo "... src/TcpServer.s"
 	@echo "... src/Thread.o"
 	@echo "... src/Thread.i"
 	@echo "... src/Thread.s"
