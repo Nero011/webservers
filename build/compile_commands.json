@@ -1,22 +1,87 @@
 [
 {
-  "directory": "/home/thatchlobe/cpp/webservers/build",
-  "command": "/usr/bin/g++  -I/home/thatchlobe/cpp/webservers/src -g -o CMakeFiles/threadPoolTest.dir/src/Channel.cc.o -c /home/thatchlobe/cpp/webservers/src/Channel.cc",
-  "file": "/home/thatchlobe/cpp/webservers/src/Channel.cc"
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Acceptor.cc.o -c /home/code/webservers/src/Acceptor.cc",
+  "file": "/home/code/webservers/src/Acceptor.cc"
 },
 {
-  "directory": "/home/thatchlobe/cpp/webservers/build",
-  "command": "/usr/bin/g++  -I/home/thatchlobe/cpp/webservers/src -g -o CMakeFiles/threadPoolTest.dir/src/EventLoop.cc.o -c /home/thatchlobe/cpp/webservers/src/EventLoop.cc",
-  "file": "/home/thatchlobe/cpp/webservers/src/EventLoop.cc"
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Buffer.cc.o -c /home/code/webservers/src/Buffer.cc",
+  "file": "/home/code/webservers/src/Buffer.cc"
 },
 {
-  "directory": "/home/thatchlobe/cpp/webservers/build",
-  "command": "/usr/bin/g++  -I/home/thatchlobe/cpp/webservers/src -g -o CMakeFiles/threadPoolTest.dir/src/Poller.cc.o -c /home/thatchlobe/cpp/webservers/src/Poller.cc",
-  "file": "/home/thatchlobe/cpp/webservers/src/Poller.cc"
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Channel.cc.o -c /home/code/webservers/src/Channel.cc",
+  "file": "/home/code/webservers/src/Channel.cc"
 },
 {
-  "directory": "/home/thatchlobe/cpp/webservers/build",
-  "command": "/usr/bin/g++  -I/home/thatchlobe/cpp/webservers/src -g -o CMakeFiles/threadPoolTest.dir/src/threadPool.cc.o -c /home/thatchlobe/cpp/webservers/src/threadPool.cc",
-  "file": "/home/thatchlobe/cpp/webservers/src/threadPool.cc"
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/CurrentThread.cc.o -c /home/code/webservers/src/CurrentThread.cc",
+  "file": "/home/code/webservers/src/CurrentThread.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/DefaultPoller.cc.o -c /home/code/webservers/src/DefaultPoller.cc",
+  "file": "/home/code/webservers/src/DefaultPoller.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/EpollPoller.cc.o -c /home/code/webservers/src/EpollPoller.cc",
+  "file": "/home/code/webservers/src/EpollPoller.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/EventLoop.cc.o -c /home/code/webservers/src/EventLoop.cc",
+  "file": "/home/code/webservers/src/EventLoop.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/EventLoopThread.cc.o -c /home/code/webservers/src/EventLoopThread.cc",
+  "file": "/home/code/webservers/src/EventLoopThread.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/EventLoopThreadPool.cc.o -c /home/code/webservers/src/EventLoopThreadPool.cc",
+  "file": "/home/code/webservers/src/EventLoopThreadPool.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/InetAddress.cc.o -c /home/code/webservers/src/InetAddress.cc",
+  "file": "/home/code/webservers/src/InetAddress.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Logger.cc.o -c /home/code/webservers/src/Logger.cc",
+  "file": "/home/code/webservers/src/Logger.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Poller.cc.o -c /home/code/webservers/src/Poller.cc",
+  "file": "/home/code/webservers/src/Poller.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Socket.cc.o -c /home/code/webservers/src/Socket.cc",
+  "file": "/home/code/webservers/src/Socket.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/TcpConnection.cc.o -c /home/code/webservers/src/TcpConnection.cc",
+  "file": "/home/code/webservers/src/TcpConnection.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/TcpServer.cc.o -c /home/code/webservers/src/TcpServer.cc",
+  "file": "/home/code/webservers/src/TcpServer.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Thread.cc.o -c /home/code/webservers/src/Thread.cc",
+  "file": "/home/code/webservers/src/Thread.cc"
+},
+{
+  "directory": "/home/code/webservers/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -Dmymuduo_EXPORTS -I/home/code/webservers/src  -g -g -fPIC -o CMakeFiles/mymuduo.dir/src/Timestamp.cc.o -c /home/code/webservers/src/Timestamp.cc",
+  "file": "/home/code/webservers/src/Timestamp.cc"
 }
 ]

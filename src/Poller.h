@@ -1,35 +1,44 @@
-#ifndef POLLERHEAD
-#define POLLERHEAD
+#pragma once
 
-
-#include <sys/epoll.h>
-#include "Channel.h"
+#include <unordered_map>
 #include <vector>
 
-class EventLoop{};
+#include "Timestamp.h"
+#include "noncopyable.h"
 
-// epoll封装
+class Channel;
+class EventLoop;
 
-class Poller
-{
-private:
-    int epollfd_;
-    EventLoop* loop_;
-    std::vector<struct epoll_event> eventList_;
-    int eventListSize_;
+// 多路事件分发器的抽象模块
 
+class Poller : noncopyable {
 public:
+    using ChannelList = std::vector<Channel*>;  // 维护的通道
+
     Poller(EventLoop* loop);
-    ~Poller();
+    virtual ~Poller() = default;
 
-    void loop();
+    /// @brief 启动IO复用
+    /// @param timeoutMs 超时时间
+    /// @param activeChannels 当前感兴趣的通道
+    /// @return 时间戳
+    virtual Timestamp poll(int timeoutMs, ChannelList* activeChannels) = 0;
+    virtual void updateChannel(Channel* ch) = 0;
+    virtual void removeChannel(Channel* ch) = 0;
 
-    // update要用两层状态机，通过传入channel所需要的更新操作，决定下一个状态
-    void updateChannel(Channel& ch);
-    void update(int opertion, Channel& ch);
+    // 判断传入Channel是否在当前Poller中
+    bool hasChannel(Channel* ch) const;
 
+    // EventLoop可以通过该接口获取IO复用具体实现
+    // 这个函数不能在本类实现，因为要返回一个实例化的IO复用，而IO复用是Poller的派生类
+    // 基类中不应该引用派生类
+    static Poller* newDefaultPoller(EventLoop* loop);
+
+protected:  // 供派生类如epoller等使用
+    // key : sockfd  value: channel
+    using ChannelMap = std::unordered_map<int, Channel*>;
+    ChannelMap channels_;
+
+private:
+    EventLoop* ownLoop_;  // Poller所属的事件循环
 };
-
-
-
-#endif
