@@ -40,7 +40,7 @@ public:
 
     explicit Buffer(size_t initialSize = kInitialSize)
         : buffer_(kCheapPrepend + initialSize), readerIndex_(kCheapPrepend), writerIndex_(kCheapPrepend) {}
-    ~Buffer();
+    ~Buffer() {}
 
     /// @brief
     /// @return 未读的缓冲区长度

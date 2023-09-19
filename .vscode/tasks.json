@@ -7,11 +7,12 @@
 			"command": "/usr/bin/g++-11",
 			"args": [
 				"-fdiagnostics-color=always",
-				"-I${workspaceFolder}/include",
-				
+				// "-I${workspaceFolder}/include",
 				"-g",
 				// "${file}",
-				"${workspaceFolder}/src/*.cc",
+				// "${workspaceFolder}/src/*.cc",
+				"-lmymuduo",
+				" -lpthread",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}"
 			],

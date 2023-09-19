@@ -1,13 +1,13 @@
-set(CMAKE_HOST_SYSTEM "Linux-5.15.49-linuxkit-pr")
+set(CMAKE_HOST_SYSTEM "Linux-6.3.13-linuxkit")
 set(CMAKE_HOST_SYSTEM_NAME "Linux")
-set(CMAKE_HOST_SYSTEM_VERSION "5.15.49-linuxkit-pr")
+set(CMAKE_HOST_SYSTEM_VERSION "6.3.13-linuxkit")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "aarch64")
 
 
 
-set(CMAKE_SYSTEM "Linux-5.15.49-linuxkit-pr")
+set(CMAKE_SYSTEM "Linux-6.3.13-linuxkit")
 set(CMAKE_SYSTEM_NAME "Linux")
-set(CMAKE_SYSTEM_VERSION "5.15.49-linuxkit-pr")
+set(CMAKE_SYSTEM_VERSION "6.3.13-linuxkit")
 set(CMAKE_SYSTEM_PROCESSOR "aarch64")
 
 set(CMAKE_CROSSCOMPILING "FALSE")

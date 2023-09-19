@@ -1,5 +1,6 @@
 #include "Socket.h"
 
+#include <fcntl.h>
 #include <netinet/tcp.h>
 #include <strings.h>
 #include <sys/socket.h>
@@ -23,19 +24,25 @@ void Socket::listen() {
     }
 }
 
+// 用于客户端
+int Socket::connect(const InetAddress &addr) {
+    int fd = ::connect(sockfd_, (sockaddr *)addr.getSockAddr(), sizeof(sockaddr_in));
+    return fd;
+}
+
 /// @brief accept的封装
 /// @param peeraddr 传出参数，接受到了连接地址
 /// @return 接受到的新fd
 int Socket::accept(InetAddress *peeraddr) {
     sockaddr_in addr;
     bzero(&addr, sizeof addr);
-    socklen_t len;
+    socklen_t len = sizeof(addr);  // len必须初始化
     int connfd = ::accept(sockfd_, (sockaddr *)&addr, &len);
 
     if (connfd >= 0) {
         peeraddr->setSockAddr(addr);
     }
-
+    ::fcntl(connfd, O_NONBLOCK);  // 修改为非阻塞io
     return connfd;
 }
 

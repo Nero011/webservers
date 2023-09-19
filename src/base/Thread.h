@@ -36,5 +36,5 @@ private:
 
     std::string name_;  // 线程名称
 
-    static std::atomic_int32_t numCreated_;  // 启动的线程数
+    static std::atomic_int numCreated_;  // 启动的线程数
 };

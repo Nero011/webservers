@@ -39,9 +39,10 @@ TcpServer::~TcpServer() {
 void TcpServer::setThreadNum(int numThreads) { threadPool_->setThreadNums(numThreads); }
 
 void TcpServer::start() {
-    if (started_++ == 0) {                                                // 防止一个TcpServer对象被start多次
-        threadPool_->start(threadInitCallback_);                          // 启动底层的线程池
-        loop_->runInLoop(std::bind(&Acceptor::listen, acceptor_.get()));  // 手动启动baseloop，调用acceptor的listen
+    if (started_++ == 0) {                        // 防止一个TcpServer对象被start多次
+        threadPool_->start(threadInitCallback_);  // 启动底层的线程池
+        loop_->runInLoop(std::bind(
+            &Acceptor::listen, acceptor_.get()));  // 手动启动baseloop，调用acceptor的listen，baseloop的任务就是listen
     }
 }
 

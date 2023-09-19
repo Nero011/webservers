@@ -12,8 +12,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 
 
 # 定义参与编译的源文件
-include_directories (src)
-aux_source_directory(src SRC_LIST)
+include_directories (src/base)
+include_directories (src/extra)
+aux_source_directory(src/base SRC_LIST)
+aux_source_directory(src/extra SRC_LIST)
 
 # 编译动态库
 add_library(mymuduo SHARED ${SRC_LIST})

@@ -3,7 +3,7 @@
 #include <semaphore.h>
 
 #include "CurrentThread.h"
-std::atomic_int32_t numCreated_ = 0;
+std::atomic_int Thread::numCreated_(0);
 
 Thread::Thread(ThreadFunc func, const std::string& name)
     : started_(false), joined_(false), tid_(0), func_(std::move(func)), name_(name) {
