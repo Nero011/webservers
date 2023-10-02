@@ -7,10 +7,10 @@
 
 class RedisConn : noncopyable {
 private:
-    redisContext* conn_;
+    redisContext* context_;
 
 public:
     RedisConn(InetAddress& addr);
     ~RedisConn();
-    void test();
+    redisContext* getContext() const { return context_; }
 };
